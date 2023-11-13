@@ -19,14 +19,7 @@ $update = mysqli_query($connection, "UPDATE showroom_mobil SET nama_mobil='$nama
 
         // Buatkan kondisi jika eksekusi query berhasil
         // Jika terdapat kesalahan, buatkan eksekusi query gagalnya
-        if ($update){
-            header('Location: list_mobil.php');
-        } else {
-            echo "<script>
-                alert('Data gagal diupdate')
-                document.location.href = 'form_update_mobil.php'
-                </script>";
-        }
+       
     // Panggil fungsi update dengan data yang sesuai
 
 // Tutup koneksi ke database setelah selesai menggunakan database
