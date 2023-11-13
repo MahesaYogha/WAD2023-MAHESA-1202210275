@@ -10,14 +10,27 @@
     <center>
         <div class="container">
             <h1>List Mobil</h1>
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope ="col">#</th>
+                            <th scope ="col">Nama Mobil</th>
+                            <th scope ="col">Brand Mobil</th>
+                            <th scope ="col">Warna Mobil</th>
+                            <th scope ="col">Tipe Mobil</th>
+                            <th scope ="col">Harga</th>
+                            <th scope ="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
             <?php
             include("connect.php");
 
             // Buatlah query untuk mengambil data dari database (gunakan query SELECT)
 
-            $query = "SELECT * FROM showroom_mobil";
-            $result= mysqli_query($connect,$query);
+            $query = mysqli_query($connection,"SELECT * FROM showroom_mobil");
+           
 
             
 
@@ -35,11 +48,27 @@
             //<!--  **********************  1  **************************     -->
 
             
-            
+            if($query){
+                while ($select = mysqli_fetch_assoc($query)){
+            ?>
+            <tr>
+                <th scope ="row"><?= $select['id'] ?></th>
+                <td><?= $select['nama_mobil'] ?></td>
+                <td><?= $select['brand_mobil'] ?></td>
+                <td><?= $select['warna_mobil'] ?></td>
+                <td><?= $select['tipe_mobil'] ?></td>
+                <td><?= $select['harga_mobil'] ?></td>
+                <td><a href="form_detail_mobil.php?id=<?= $select['id'] ?>" class="btn btn-primary">Detail</td>
+            </tr>
+            <?php
+                }
+            }
 
+           
 
-
-
+            else {
+                echo"Tidak ada data di database";
+            }
 
 
 
